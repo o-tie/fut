@@ -2,12 +2,11 @@
 
 namespace controllers\init;
 
-use core\Controller;
 use core\DB;
 use PDO;
 use Throwable;
 
-class InitController extends Controller
+class InitController
 {
     protected string $initFile;
     protected array $migrations;
@@ -16,11 +15,9 @@ class InitController extends Controller
 
     public function __construct()
     {
-        parent::__construct();
-
         $this->initFile = __DIR__ . '/../../../init';
         $this->migrations = require_once(__DIR__ . '/../../migrations/init_migrations.php');
-        $this->players = require_once(__DIR__ . '/../../../players.php');
+        $this->players = require_once(__DIR__ . '/../../configs/players.php');
         $this->db = DB::getInstance();
     }
 
@@ -46,10 +43,12 @@ class InitController extends Controller
                 $this->db->commit();
             }
             file_put_contents($this->initFile, '');
+            echo 'Initialized successfully';
         } catch (Throwable $e) {
             if ($this->db->inTransaction()) {
                 $this->db->rollBack();
             }
+            echo $e->getMessage();
         }
     }
 }
