@@ -1,0 +1,17 @@
+{
+    "name": "root/html",
+    "autoload": {
+        "psr-4": {
+            "core\\": "src/core",
+            "configs\\": "src/configs",
+            "controllers\\": "src/controllers",
+            "models\\": "src/models",
+            "repositories\\": "src/repositories",
+            "services\\": "src/services"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6",
+        "ext-pdo": "*"
+    }
+}

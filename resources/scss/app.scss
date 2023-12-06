@@ -1,0 +1,90 @@
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import "variables";
+
+.main {
+  height: 100vh;
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+  .login-form-wrapper, .new-user-wrapper {
+    max-width: 400px;
+    width: 400px;
+  }
+  .stats-check-icon {
+    color: $success;
+    &:hover {
+      cursor: pointer;
+      color: $green-700;
+    }
+  }
+  .stats-edit-icon {
+    &:hover {
+      color: $secondary;
+      cursor: pointer;
+    }
+  }
+  .max-width-400 {
+    max-width: 400px;
+  }
+  .login-form-label {
+    width: 25%;
+  }
+  .players-wrapper {
+    table {
+      tr {
+        vertical-align: middle !important;
+        td, th {
+          vertical-align: middle !important;
+        }
+      }
+    }
+  }
+
+  .info-icon {
+    i {
+      color: $primary
+    }
+  }
+}
+
+.nav-items-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  img.brand-logo-img {
+    max-height: 40px;
+    color: $bs-light;
+  }
+  .exit-link {
+    text-decoration: none;
+    color: $bs-light;
+    &:hover {
+      color: $grey-500;
+    }
+  }
+}
+
+.w-10 {
+  width: 10% !important;
+}
+.w-20 {
+  width: 20% !important;
+}
+.w-50 {
+  width: 50% !important;
+}
+.w-80 {
+  width: 80% !important;
+}
+.w-90 {
+  width: 90% !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+@media screen and (max-width: 768px) {
+  .login-form-wrapper, .new-user-wrapper {
+    width: 100%; /* Полная ширина на мобильных устройствах */
+    padding: 0 15px; /* Добавьте отступы для улучшенного визуального восприятия */
+  }
+}

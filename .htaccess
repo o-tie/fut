@@ -1,0 +1,7 @@
+# Удаляем последний слеш из URL
+RewriteRule ^(.*)/$ $1 [L]
+
+# Направляем запросы на index.php
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [L]

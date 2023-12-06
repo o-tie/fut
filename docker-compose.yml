@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - football-network
+    volumes:
+      - ./:/var/www/html/
+
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-root}
+    networks:
+      - football-network
+    ports:
+      - "3322:3306"
+    command: mysqld --sql_mode=""
+    restart: unless-stopped
+    volumes:
+      - ../dumps/:/home
+
+networks:
+  football-network:
+    driver: bridge
