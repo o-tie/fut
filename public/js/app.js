@@ -17129,10 +17129,10 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
         data: 'name',
         "class": 'w-70'
       }, {
-        data: 'overall',
+        data: 'votes',
         "class": 'w-10 text-center'
       }, {
-        data: 'votes',
+        data: 'overall',
         "class": 'w-10 text-center'
       }, {
         data: 'overallUser',

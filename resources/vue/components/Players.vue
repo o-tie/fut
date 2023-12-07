@@ -55,8 +55,8 @@ export default {
       filters: {},
       columns: [
         {data: 'name' , class:'w-70'},
-        {data: 'overall' , class:'w-10 text-center'},
         {data: 'votes' , class:'w-10 text-center'},
+        {data: 'overall' , class:'w-10 text-center'},
         {data: 'overallUser' , class:'w-10 text-center'},
         {data: null, orderable: false, class:'w-10 text-center',
           render: (data) => {
