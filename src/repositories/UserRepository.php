@@ -39,9 +39,12 @@ class UserRepository extends Repository
      */
     public function create($params): bool
     {
+        $username = trim(htmlspecialchars($params['username']));
+        $password = trim(htmlspecialchars($params['password']));
+
         $query = $this->db->prepare("INSERT INTO {$this->tableName} (username, password) VALUES (:username, :pass)");
-        $query->bindParam(':username', $params['username']);
-        $query->bindParam(':pass', $params['password']);
+        $query->bindParam(':username', $username);
+        $query->bindParam(':pass', $password);
 
         return $query->execute();
     }
