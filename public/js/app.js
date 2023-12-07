@@ -17044,9 +17044,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     submitForm: function submitForm() {
       var _this = this;
       // Отправка данных через axios на /stats
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].put("/api/players", {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post("/api/players", {
         player: this.player,
         stats: this.formData
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }).then(function (response) {
         if (response.data.success) {
           _this.$emit('form-close');
@@ -17160,6 +17164,10 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
       var _this = this;
       axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('/api/players', {
         params: {}
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }).then(function (response) {
         if (response.data.success) {
           _this.tableData = response.data.records;

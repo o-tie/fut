@@ -126,13 +126,17 @@ export default {
   methods: {
     submitForm() {
       // Отправка данных через axios на /stats
-      axios.put("/api/players", {player: this.player, stats: this.formData})
+      axios.post("/api/players", {player: this.player, stats: this.formData},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
           .then(response => {
             if (response.data.success) {
               this.$emit('form-close');
               this.$emit('player-updated');
-            }
-            else {
+            } else {
               alert("Щось пішло не так...");
             }
           })

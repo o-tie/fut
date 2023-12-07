@@ -79,7 +79,12 @@ export default {
       }
     },
     index() {
-      axios.get('/api/players', {params: {}})
+      axios.get('/api/players', {params: {}},
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          })
           .then(response => {
             if (response.data.success) {
               this.tableData = response.data.records;

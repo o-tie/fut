@@ -17,11 +17,9 @@ return [
 
         '/api/players' => [PlayerController::class, 'getPlayers'],
     ],
-    'PUT' => [
-        '/api/players' => [PlayerController::class, 'update'],
-    ],
     'POST' => [
         '/login' => [AuthController::class, 'login'],
         '/api/create-user' => [AuthController::class, 'create'],
+        '/api/players' => [PlayerController::class, 'update'],
     ],
 ];
