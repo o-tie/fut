@@ -17469,7 +17469,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "pac",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.formData.pac = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_8), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.pac]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17479,7 +17480,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "dri",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.formData.dri = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_11), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.dri]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17489,7 +17491,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "sho",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.formData.sho = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_14), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.sho]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17499,7 +17502,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "pas",
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.formData.pas = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_17), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.pas]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17509,7 +17513,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "vis",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.formData.vis = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_20), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.vis]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17519,7 +17524,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "def",
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.formData.def = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_23), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.def]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17529,7 +17535,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "pos",
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $data.formData.pos = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_26), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.pos]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "number",
     min: $data.min,
@@ -17539,7 +17546,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "phy",
     "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
       return $data.formData.phy = $event;
-    })
+    }),
+    required: ""
   }, null, 8 /* PROPS */, _hoisted_29), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.formData.phy]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[9] || (_cache[9] = function ($event) {
       return _ctx.$emit('form-close');

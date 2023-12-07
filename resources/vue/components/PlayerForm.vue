@@ -10,42 +10,42 @@
       <form @submit.prevent="submitForm">
         <div class="mb-3">
           <label for="pac" class="form-label">Швидкість</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pac" v-model="formData.pac" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pac" v-model="formData.pac" required />
         </div>
 
         <div class="mb-3">
           <label for="dri" class="form-label">Дриблінг</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="dri" v-model="formData.dri" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="dri" v-model="formData.dri" required />
         </div>
 
         <div class="mb-3">
           <label for="sho" class="form-label">Удари</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="sho" v-model="formData.sho" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="sho" v-model="formData.sho" required />
         </div>
 
         <div class="mb-3">
           <label for="pas" class="form-label">Паси</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pas" v-model="formData.pas" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pas" v-model="formData.pas" required />
         </div>
 
         <div class="mb-3">
           <label for="vis" class="form-label">Бачення поля</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="vis" v-model="formData.vis" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="vis" v-model="formData.vis" required />
         </div>
 
         <div class="mb-3">
           <label for="def" class="form-label">Захист</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="def" v-model="formData.def" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="def" v-model="formData.def" required />
         </div>
 
         <div class="mb-3">
           <label for="pos" class="form-label">Позиційна гра</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pos" v-model="formData.pos" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="pos" v-model="formData.pos" required />
         </div>
 
         <div class="mb-3">
           <label for="phy" class="form-label">Витривалість</label>
-          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="phy" v-model="formData.phy" />
+          <input type="number" :min="min" :max="max" :placeholder="inputStatPlaceholder" class="form-control" id="phy" v-model="formData.phy" required />
         </div>
 
         <div class="d-flex justify-content-end">
