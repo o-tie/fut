@@ -108,9 +108,9 @@ export default {
   data() {
     return {
       descriptionModal: '',
-      inputStatPlaceholder: 'Від 1 до 100',
-      min: 1,
-      max: 100,
+      inputStatPlaceholder: 'Від 40 до 99',
+      min: 40,
+      max: 99,
       formData: {
         pac: null,
         dri: null,

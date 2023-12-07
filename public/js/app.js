@@ -17025,9 +17025,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   data: function data() {
     return {
       descriptionModal: '',
-      inputStatPlaceholder: 'Від 1 до 100',
-      min: 1,
-      max: 100,
+      inputStatPlaceholder: 'Від 40 до 99',
+      min: 40,
+      max: 99,
       formData: {
         pac: null,
         dri: null,
@@ -17130,6 +17130,9 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
         "class": 'w-70'
       }, {
         data: 'overall',
+        "class": 'w-10 text-center'
+      }, {
+        data: 'votes',
         "class": 'w-10 text-center'
       }, {
         data: 'overallUser',
@@ -17584,8 +17587,10 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
-    "class": "70"
+    "class": "w-60"
   }, "Імʼя"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+    "class": "w-10 text-center"
+  }, "Проголосувало"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
     "class": "w-10 text-center"
   }, "Рейтинг (загальний)"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
     "class": "w-10 text-center"

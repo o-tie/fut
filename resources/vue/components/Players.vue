@@ -11,7 +11,8 @@
     >
       <thead>
       <tr>
-        <th class="70">Імʼя</th>
+        <th class="w-60">Імʼя</th>
+        <th class="w-10 text-center">Проголосувало</th>
         <th class="w-10 text-center">Рейтинг (загальний)</th>
         <th class="w-10 text-center">Рейтинг (оцінка)</th>
         <th class="w-10 text-center"></th>
@@ -55,6 +56,7 @@ export default {
       columns: [
         {data: 'name' , class:'w-70'},
         {data: 'overall' , class:'w-10 text-center'},
+        {data: 'votes' , class:'w-10 text-center'},
         {data: 'overallUser' , class:'w-10 text-center'},
         {data: null, orderable: false, class:'w-10 text-center',
           render: (data) => {

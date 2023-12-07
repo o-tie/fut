@@ -60,4 +60,17 @@ class PlayersStatsRepository extends Repository
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /**
+     * @param int $playerId
+     * @return mixed
+     */
+    public function getPlayerVotes(int $playerId)
+    {
+        $query = $this->db->prepare("SELECT count(player_id) as votes FROM {$this->tableName} WHERE player_id = :player_id");
+        $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }

@@ -161,5 +161,14 @@ class StatService
 
         return $this->playerStatsRepo->updateOrCreate($data);
     }
+
+    /**
+     * @param int $playerId
+     * @return int
+     */
+    public function getVotes(int $playerId): int
+    {
+        return $this->playerStatsRepo->getPlayerVotes($playerId) ?? 0;
+    }
 }
 
