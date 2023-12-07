@@ -91,6 +91,6 @@ class AuthController extends BaseController
     public function logout()
     {
         unset($_SESSION['user']);
-        $this->render('login.index');
+        header("Location: /");
     }
 }

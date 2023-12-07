@@ -25,6 +25,8 @@ class DB
         try {
             self::$pdo = new PDO("mysql:host=$host;dbname=$dbname;port=$port", $username, $password);
             self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$pdo->exec("SET NAMES 'utf8'");
+            self::$pdo->exec("SET CHARACTER SET utf8");
         } catch (Throwable $e) {
             die("Connection failed: " . $e->getMessage());
         }

@@ -27,6 +27,7 @@ class InitController
     public function index(): void
     {
         if (file_exists($this->initFile)) {
+            echo 'ini exists';
             return;
         }
         try {
