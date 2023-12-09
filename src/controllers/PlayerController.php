@@ -38,7 +38,9 @@ class PlayerController extends Controller
 
             foreach ($players as &$player) {
                 $player->votes = $this->statService->getVotes($player->id);
-                $player->overall = $this->statService->getOverall($player->id);
+                $overall = $this->statService->getOverall($player->id);
+                $player->overall = $overall['overall'];
+                $player->overallStats = $overall['stats'];
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
             }
 

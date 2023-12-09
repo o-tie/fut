@@ -53,9 +53,9 @@ class StatService
 
     /**
      * @param $playerId
-     * @return int|null
+     * @return array|null
      */
-    public function getOverall($playerId): ?int
+    public function getOverall($playerId): ?array
     {
         $playerStats = $this->playerStatsRepo->getAllPlayerStats($playerId);
 
@@ -64,6 +64,7 @@ class StatService
         }
 
         $statsArr = [];
+        $avg = [];
         foreach ($playerStats as $playerStat) {
             $stats = json_decode($playerStat['stats'], true);
             foreach ($stats as $stat => $value) {
@@ -95,7 +96,10 @@ class StatService
             $avg[$statName] = round(array_sum($statValue)/$countStat);
         }
 
-        return $this->calcOverallRate($avg);
+        $result['stats'] = $avg;
+        $result['overall'] = $this->calcOverallRate($avg);
+
+        return $result;
     }
 
     /**

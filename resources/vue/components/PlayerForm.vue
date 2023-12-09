@@ -5,7 +5,7 @@
         <div class="player-name-wrapper">
           <h3>{{ player.name }}</h3>
         </div>
-        <div class="info-icon" @click="openDescriptionModal"><i class="fa fa-info-circle"></i></div>
+        <div class="info-icon" @click="openDescriptionModal"><i class="fa fa-info-circle mx-3"></i></div>
       </div>
       <form @submit.prevent="submitForm">
         <div class="mb-3">

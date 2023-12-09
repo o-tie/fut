@@ -12,10 +12,10 @@
       <thead>
       <tr>
         <th class="w-60">Імʼя</th>
-        <th class="w-10 text-center">Проголосувало</th>
+        <th class="w-10 text-center">Голосів</th>
         <th class="w-10 text-center">Рейтинг (загальний)</th>
         <th class="w-10 text-center">Рейтинг (оцінка)</th>
-        <th class="w-10 text-center"></th>
+        <th class="w-10 text-center"><span class="info-icon" @click="showStatsDescription"><i class="fa fa-info-circle"></i></span></th>
       </tr>
       </thead>
     </DataTable>
@@ -23,6 +23,81 @@
   <div class="" v-if="showForm">
     <PlayerForm :player="player" :is-mobile="isMobile" @form-close="closePlayerForm" @player-updated="index"></PlayerForm>
   </div>
+
+  <div class="modal fade" id="player-stats-modal" ref="playerStatsModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content h-100">
+        <div class="modal-header">
+          <h6 class="modal-title">Стати</h6>
+          <button aria-label="Close"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  type="button">
+          </button>
+        </div>
+        <div class="modal-body h-100">
+          <div class="container">
+            <table class="table table-bordered text-center">
+              <thead class="table-light">
+              <tr>
+                <th class="align-middle" v-for="(value, stat) in playerStats" :key="stat">{{ stat }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td class="align-middle" v-for="(value, stat) in playerStats" :key="stat">{{ value }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+          >
+            Закрити
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="stats-description-modal" ref="statsDescriptionModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content h-100">
+        <div class="modal-header">
+          <h6 class="modal-title">Опис статів</h6>
+          <button aria-label="Close"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  type="button">
+          </button>
+        </div>
+        <div class="modal-body h-100">
+          <div class="container">
+            <p><span><b>pac</b></span> - <span>Швидкість</span></p>
+            <p><span><b>dri</b></span> - <span>Дриблінг</span></p>
+            <p><span><b>sho</b></span> - <span>Удари</span></p>
+            <p><span><b>pas</b></span> - <span>Паси</span></p>
+            <p><span><b>vis</b></span> - <span>Бачення поля</span></p>
+            <p><span><b>def</b></span> - <span>Захист</span></p>
+            <p><span><b>pos</b></span> - <span>Позиційна гра</span></p>
+            <p><span><b>phy</b></span> - <span>Витривалість</span></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+          >
+            Закрити
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 </template>
 
@@ -43,7 +118,10 @@ export default {
       showForm: false,
       players: null,
       player: null,
+      playerStats: null,
       table: null,
+      playerStatsModal: '',
+      statsDescriptionModal: '',
       tableOptions : {
         responsive: true,
         select: true,
@@ -61,7 +139,7 @@ export default {
         {data: null, orderable: false, class:'w-10 text-center',
           render: (data) => {
             const iconClass = data.stats !== null ? 'fas fa-user-check stats-check-icon' : 'fas fa-user-edit stats-edit-icon';
-            return `<div class="d-flex justify-content-center align-items-center"><i class="${iconClass} edit-player-button cursor-pointer" data-id='${data.id}'></i></div>`;
+            return `<div class="d-flex justify-content-center align-items-center"><i class="fa-regular fa-eye player-stats-button cursor-pointer" data-id='${data.id}'></i><i class="${iconClass} edit-player-button cursor-pointer" data-id='${data.id}'></i></div>`;
           }
         },
       ],
@@ -109,12 +187,37 @@ export default {
     },
     handleResize() {
       this.isMobile = this.detectMobile();
-    }
+    },
+    showPlayerStatsModal(e) {
+      this.playerStats = null;
+
+      const id = e.target.dataset.id;
+      this.preparePlayerStatsData(id);
+      const modalEl = this.$refs.playerStatsModal;
+      this.descriptionModal = new bootstrap.Modal(modalEl, { keyboard: false });
+      this.descriptionModal.show();
+    },
+    preparePlayerStatsData(id) {
+      const player = this.players.find(obj => obj.id === Number(id));
+      if (player !== undefined) {
+        this.playerStats = player.overallStats || {};
+      }
+    },
+    showStatsDescription() {
+      const modalEl = this.$refs.statsDescriptionModal;
+      this.descriptionModal = new bootstrap.Modal(modalEl, { keyboard: false });
+      this.descriptionModal.show();
+    },
   },
   mounted() {
     document.body.addEventListener('click', (e) => {
       if (e.target.classList.contains('edit-player-button')) {
         this.editPlayerStats(e);
+      }
+    });
+    document.body.addEventListener('click', (e) => {
+      if (e.target.classList.contains('player-stats-button')) {
+        this.showPlayerStatsModal(e);
       }
     });
 

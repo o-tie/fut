@@ -45,6 +45,14 @@
       color: $primary
     }
   }
+
+  i.player-stats-button {
+    color: $secondary;
+    margin-right: 20px;
+    &:hover {
+      color: $bs-grey-dark;
+    }
+  }
 }
 
 .nav-items-wrapper {
