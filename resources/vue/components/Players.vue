@@ -37,6 +37,8 @@
         </div>
         <div class="modal-body h-100">
           <div class="container">
+            <p class="mb-0"><b>Кількість корегувань з останньої гри: </b><b class="text-primary">{{ playerCorrections }}</b></p>
+            <p class="text-danger">*статистика корегувань в тестовому режимі</p>
             <table class="table table-bordered text-center">
               <thead class="table-light">
               <tr>
@@ -119,6 +121,7 @@ export default {
       players: null,
       player: null,
       playerStats: null,
+      playerCorrections: null,
       table: null,
       playerStatsModal: '',
       statsDescriptionModal: '',
@@ -190,6 +193,7 @@ export default {
     },
     showPlayerStatsModal(e) {
       this.playerStats = null;
+      this.playerCorrections = null;
 
       const id = e.target.dataset.id;
       this.preparePlayerStatsData(id);
@@ -201,6 +205,7 @@ export default {
       const player = this.players.find(obj => obj.id === Number(id));
       if (player !== undefined) {
         this.playerStats = player.overallStats || {};
+        this.playerCorrections = player.corrections || 0;
       }
     },
     showStatsDescription() {

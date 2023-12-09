@@ -3,6 +3,7 @@
 namespace repositories;
 
 use core\Repository;
+use DateTime;
 use PDO;
 
 class PlayersStatsRepository extends Repository
@@ -68,6 +69,30 @@ class PlayersStatsRepository extends Repository
     public function getPlayerVotes(int $playerId)
     {
         $query = $this->db->prepare("SELECT count(player_id) as votes FROM {$this->tableName} WHERE player_id = :player_id");
+        $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
+
+    /**
+     * @param int $playerId
+     * @return int
+     */
+    public function getWeekCorrections(int $playerId): int
+    {
+        $query = $this->db->prepare(
+            "SELECT COUNT(player_id) as corrections
+        FROM players_stats
+        WHERE player_id = :player_id
+          AND updated_at >= 
+            CASE 
+              WHEN DAYOFWEEK(NOW()) = 7 THEN
+                CONCAT(CURDATE(), ' 09:00:00')
+              ELSE
+                CONVERT_TZ(CURDATE() - INTERVAL (DAYOFWEEK(NOW()) + 5) % 7 DAY + INTERVAL 9 HOUR, 'UTC', 'Europe/Berlin')
+            END
+        ");
         $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
         $query->execute();
 

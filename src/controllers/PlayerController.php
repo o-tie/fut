@@ -40,8 +40,9 @@ class PlayerController extends Controller
                 $player->votes = $this->statService->getVotes($player->id);
                 $overall = $this->statService->getOverall($player->id);
                 $player->overall = $overall['overall'];
-                $player->overallStats = $overall['stats'];
+                $player->overallStats = $overall['overallStats'];
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
+                $player->corrections = $this->statService->getWeekCorrections($player->id);
             }
 
             $this->jsonResponse(['success' => true, 'records' => $players]);

@@ -55,6 +55,10 @@
   }
 }
 
+.color-primary {
+  color: $primary;
+}
+
 .nav-items-wrapper {
   display: flex;
   justify-content: space-around;

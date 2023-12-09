@@ -96,7 +96,7 @@ class StatService
             $avg[$statName] = round(array_sum($statValue)/$countStat);
         }
 
-        $result['stats'] = $avg;
+        $result['overallStats'] = $avg;
         $result['overall'] = $this->calcOverallRate($avg);
 
         return $result;
@@ -183,6 +183,11 @@ class StatService
         $data['stats'] = json_encode($params['stats']);
 
         return $this->playerStatsRepo->updateOrCreate($data);
+    }
+
+    public function getWeekCorrections($playerId): int
+    {
+        return $this->playerStatsRepo->getWeekCorrections($playerId);
     }
 
     /**
