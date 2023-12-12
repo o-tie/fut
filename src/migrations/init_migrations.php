@@ -25,6 +25,8 @@ return [
         user_id INT UNSIGNED NOT NULL,
         player_id INT UNSIGNED NOT NULL,
         stats VARCHAR(255) NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY (user_id, player_id),
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (player_id) REFERENCES players(id)

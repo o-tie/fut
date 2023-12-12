@@ -40,11 +40,55 @@
     }
   }
 
+  .make-squads-wrapper {
+    .count-teams-wrapper {
+      margin-left: 60px;
+      label {
+        align-self: center;
+        line-height: 1;
+      }
+      select {
+        height: 37.5px;
+      }
+    }
+
+    .squad-header-panel {
+      margin-left: 40px;
+      select {
+        text-align: center;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    table {
+      tr {
+        th, td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
   .info-icon {
     i {
       color: $primary
     }
   }
+
+  i.player-stats-button {
+    color: $secondary;
+    margin-right: 20px;
+    &:hover {
+      color: $bs-grey-dark;
+    }
+  }
+}
+
+.color-primary {
+  color: $primary;
 }
 
 .nav-items-wrapper {

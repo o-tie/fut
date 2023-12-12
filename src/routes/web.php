@@ -6,6 +6,7 @@ use controllers\AuthController;
 use controllers\IndexController;
 use controllers\init\InitController;
 use controllers\PlayerController;
+use controllers\SquadController;
 
 return [
     'GET' => [
@@ -14,6 +15,7 @@ return [
         '/logout' => [AuthController::class, 'logout'],
         '/login' => [AuthController::class, 'index'],
         '/players' => [PlayerController::class, 'index'],
+        '/squads' => [SquadController::class, 'index'],
 
         '/api/players' => [PlayerController::class, 'getPlayers'],
     ],

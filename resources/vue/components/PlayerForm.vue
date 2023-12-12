@@ -5,7 +5,7 @@
         <div class="player-name-wrapper">
           <h3>{{ player.name }}</h3>
         </div>
-        <div class="info-icon" @click="openDescriptionModal"><i class="fa fa-info-circle"></i></div>
+        <div class="info-icon" @click="openDescriptionModal"><i class="fa fa-info-circle mx-3"></i></div>
       </div>
       <form @submit.prevent="submitForm">
         <div class="mb-3">
@@ -108,9 +108,9 @@ export default {
   data() {
     return {
       descriptionModal: '',
-      inputStatPlaceholder: 'Від 1 до 100',
-      min: 1,
-      max: 100,
+      inputStatPlaceholder: 'Від 40 до 99',
+      min: 40,
+      max: 99,
       formData: {
         pac: null,
         dri: null,

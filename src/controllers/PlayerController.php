@@ -4,18 +4,21 @@ namespace controllers;
 
 use core\Controller;
 use repositories\PlayerRepository;
+use services\PlayerService;
 use services\StatService;
 
 class PlayerController extends Controller
 {
     protected PlayerRepository $playerRepo;
     protected StatService $statService;
+    protected PlayerService $playerService;
     public function __construct()
     {
         parent::__construct();
 
         $this->playerRepo = new PlayerRepository();
         $this->statService = new StatService();
+        $this->playerService = new PlayerService();
     }
 
     /**
@@ -37,8 +40,13 @@ class PlayerController extends Controller
             }
 
             foreach ($players as &$player) {
-                $player->overall = $this->statService->getOverall($player->id);
+                $player->votes = $this->statService->getVotes($player->id);
+                $overall = $this->statService->getOverall($player->id);
+                $player->overall = $overall['overall'];
+                $player->overallStats = $overall['overallStats'];
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
+                $player->corrections = $this->statService->getWeekCorrections($player->id);
+                $this->playerService->setStats($player);
             }
 
             $this->jsonResponse(['success' => true, 'records' => $players]);

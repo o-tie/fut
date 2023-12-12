@@ -2,11 +2,13 @@ import { createApp } from 'vue';
 
 import Players from "../vue/components/Players.vue";
 import LoginForm from "../vue/components/LoginForm.vue";
+import MakeSquads from "../vue/components/MakeSquads.vue";
 
 const app = createApp({
     components: {
         Players,
-        LoginForm
+        LoginForm,
+        MakeSquads,
     }
 });
 

@@ -25,6 +25,8 @@ class StatService
     public const POSITIONING_NAME = 'pos';
     public const STAMINA_NAME = 'phy';
 
+    public const TOLERANCE = 0.25;
+
     protected PlayerRepository $playerRepo;
     protected PlayersStatsRepository $playerStatsRepo;
 
@@ -51,32 +53,53 @@ class StatService
 
     /**
      * @param $playerId
-     * @return int|null
+     * @return array|null
      */
-    public function getOverall($playerId): ?int
+    public function getOverall($playerId): ?array
     {
-        $data = $this->playerStatsRepo->getAllPlayerStats($playerId);
-        if (empty($data)) {
+        $playerStats = $this->playerStatsRepo->getAllPlayerStats($playerId);
+
+        if (empty($playerStats)) {
             return null;
         }
 
-        $sum[self::PACE_NAME] = $sum[self::DRIBBLING_NAME] = $sum[self::SHOOTING_NAME] = $sum[self::PASSING_NAME]
-            = $sum[self::VISION_NAME] = $sum[self::DEFENDING_NAME] = $sum[self::POSITIONING_NAME] = $sum[self::STAMINA_NAME] = 0;
-
-        $count = count($data);
-        foreach ($data as $item) {
-            $stats = json_decode($item['stats'], true);
+        $statsArr = [];
+        $avg = [];
+        foreach ($playerStats as $playerStat) {
+            $stats = json_decode($playerStat['stats'], true);
             foreach ($stats as $stat => $value) {
-                $sum[$stat] += $value;
+                $statsArr[$stat][] = $value;
             }
         }
 
-        $avg= [];
-        foreach ($sum as $stat => $value) {
-            $avg[$stat] = round($value/$count);
+        foreach ($statsArr as $statName => &$statValue) {
+            $countStat = count($statValue);
+            if ($countStat > 2) {
+                /* Check min-max values. If difference min or max and avg the left rates is 25% or more value will correlate */
+                $minValue = min($statValue);
+                $maxValue = max($statValue);
+                sort($statValue);
+                array_shift($statValue);
+                array_pop($statValue);
+                $averageSmooth = array_sum($statValue)/($countStat - 2);
+                if ($this->isTolerance($minValue, $averageSmooth)) {
+                    $statValue[] = $minValue;
+                } else {
+                    $statValue[] = round(($minValue + $averageSmooth)/2);
+                }
+                if ($this->isTolerance($maxValue, $averageSmooth)) {
+                    $statValue[] = $maxValue;
+                } else {
+                    $statValue[] = round(($maxValue + $averageSmooth)/2);
+                }
+            }
+            $avg[$statName] = round(array_sum($statValue)/$countStat);
         }
 
-        return $this->calcOverallRate($avg);
+        $result['overallStats'] = $avg;
+        $result['overall'] = $this->calcOverallRate($avg);
+
+        return $result;
     }
 
     /**
@@ -160,6 +183,30 @@ class StatService
         $data['stats'] = json_encode($params['stats']);
 
         return $this->playerStatsRepo->updateOrCreate($data);
+    }
+
+    public function getWeekCorrections($playerId): int
+    {
+        return $this->playerStatsRepo->getWeekCorrections($playerId);
+    }
+
+    /**
+     * @param int $playerId
+     * @return int
+     */
+    public function getVotes(int $playerId): int
+    {
+        return $this->playerStatsRepo->getPlayerVotes($playerId) ?? 0;
+    }
+
+    protected function isTolerance($num1, $num2): bool
+    {
+        // Вычисляем разницу между числами
+        $difference = abs($num1 - $num2);
+        // Вычисляем порог для сравнения (25% от меньшего числа)
+        $threshold = min($num1, $num2) * self::TOLERANCE;
+        // Проверяем, превышает ли разница порог
+        return $difference < $threshold;
     }
 }
 
