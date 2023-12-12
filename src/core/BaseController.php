@@ -11,12 +11,9 @@ class BaseController
      */
     protected function render($view, array $data = []): void
     {
-        // Задайте данные для макета
-        $pageTitle = 'Your Default Title';
         $view = str_replace('.', '/', $view);
         $content = $this->renderView(__DIR__ . "/../views/$view.php", $data);
 
-        // Подключите общий макет
         include(__DIR__ . '/../views/layouts/index.php');
     }
 

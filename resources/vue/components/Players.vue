@@ -1,6 +1,9 @@
 <template>
 <div class="players-wrapper">
-  <div class="" v-if="tableData && !showForm">
+  <div class="" v-if="tableData && playersPage">
+    <div class="">
+      <button class="btn btn-primary" @click="confirmCreateSquads">Створити склади</button>
+    </div>
     <DataTable
         :columns="columns"
         :data="tableData"
@@ -13,14 +16,14 @@
       <tr>
         <th class="w-60">Імʼя</th>
         <th class="w-10 text-center">Голосів</th>
-        <th class="w-10 text-center">Рейтинг (загальний)</th>
-        <th class="w-10 text-center">Рейтинг (оцінка)</th>
+        <th class="w-10 text-center">Рейтинг</th>
+        <th class="w-10 text-center">Моя оцінка</th>
         <th class="w-10 text-center"><span class="info-icon" @click="showStatsDescription"><i class="fa fa-info-circle"></i></span></th>
       </tr>
       </thead>
     </DataTable>
   </div>
-  <div class="" v-if="showForm">
+  <div class="" v-if="playerFormPage">
     <PlayerForm :player="player" :is-mobile="isMobile" @form-close="closePlayerForm" @player-updated="index"></PlayerForm>
   </div>
 
@@ -116,8 +119,9 @@ export default {
   components: {PlayerForm, DataTable},
   data () {
     return {
+      playersPage: true,
+      playerFormPage: false,
       isMobile: false,
-      showForm: false,
       players: null,
       player: null,
       playerStats: null,
@@ -150,15 +154,25 @@ export default {
     }
   },
   methods: {
+    confirmCreateSquads() {
+      if (this.isMobile) {
+        const isConfirmed = window.confirm("Мобільної версії сторінки немає, точно хочеш перейти?");
+        if (isConfirmed) {
+          // Перейдите по ссылке /squads
+          window.location.replace('/squads');
+        }
+      }
+      window.location.replace('/squads');
+    },
     editPlayerStats(e) {
       let id = e.target.dataset.id;
       let player = this.players.find(obj => obj.id === Number(id));
       if (player.stats !== null) {
         if (confirm(this.confirmMessage)) {
-          this.showPlayerForm(player);
+          this.showPlayerFormPage(player);
         }
       } else {
-        this.showPlayerForm(player);
+        this.showPlayerFormPage(player);
       }
     },
     index() {
@@ -178,12 +192,22 @@ export default {
             console.log(error);
           });
     },
-    showPlayerForm(player) {
+    unsetPages() {
+      this.playersPage = false;
+      this.playerFormPage = false;
+    },
+    showPlayerFormPage(player) {
+      this.unsetPages();
       this.player = player;
-      this.showForm = true;
+      this.playerFormPage = true;
+    },
+    showPlayersPage() {
+      this.unsetPages();
+      this.playersPage = true;
     },
     closePlayerForm() {
-      this.showForm = false;
+      this.playerFormPage = false;
+      this.playersPage = true;
     },
     detectMobile() {
       return window.innerWidth <= 768;
