@@ -11,8 +11,11 @@
           <option v-for="option in teamCountOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
         </select>
       </div>
+      <div class="share-button-wrapper mx-5" v-if="Object.entries(squads).length > 0">
+        <button class="btn btn-success" @click="saveSquadsAsJPG">Поділитися складами</button>
+      </div>
     </div>
-    <div class="squads-wrapper mb-3">
+    <div class="squads-wrapper mb-3" ref="squadsShareElement">
       <div v-for="teamIndex in selectedTeamCount" :key="teamIndex" class="squad-wrapper my-3 border">
         <div class="squad-header d-flex mx-3 py-2">
           <h6 class="align-self-center mb-0">Команда {{ teamIndex }}</h6>
@@ -84,6 +87,7 @@
 <script>
 import axios from "axios";
 import DataTable from "datatables.net-vue3";
+import html2canvas from "html2canvas";
 
 export default {
   name: 'MakeSquads',
@@ -241,6 +245,17 @@ export default {
       );
 
       return total;
+    },
+    saveSquadsAsJPG() {
+      const element = this.$refs.squadsShareElement;
+
+      html2canvas(element).then((canvas) => {
+        let imgData = canvas.toDataURL('image/jpeg');
+        let link = document.createElement("a");
+        link.href = imgData;
+        link.download = 'squads.jpg';
+        link.click();
+      });
     },
   },
   mounted() {
