@@ -4,3 +4,4 @@ node_modules/
 .idea
 vcs.xml
 init
+.htaccess
