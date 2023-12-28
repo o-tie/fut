@@ -40,8 +40,8 @@
         </div>
         <div class="modal-body h-100">
           <div class="container">
-            <p class="mb-0"><b>Кількість корегувань з останньої гри: </b><b class="text-primary">{{ playerCorrections }}</b></p>
-            <p class="text-danger">*статистика корегувань в тестовому режимі</p>
+            <p class="mb-0">Кількість корегувань з останньої гри: <span class="text-primary">{{ playerCorrections }}</span></p>
+            <p class="mb-0">Останнє оновлення: <span class="text-primary">{{ lastCorrection }}</span></p>
             <table class="table table-bordered text-center">
               <thead class="table-light">
               <tr>
@@ -126,6 +126,7 @@ export default {
       player: null,
       playerStats: null,
       playerCorrections: null,
+      lastCorrection: null,
       table: null,
       playerStatsModal: '',
       statsDescriptionModal: '',
@@ -218,6 +219,7 @@ export default {
     showPlayerStatsModal(e) {
       this.playerStats = null;
       this.playerCorrections = null;
+      this.lastCorrection = null;
 
       const id = e.target.dataset.id;
       this.preparePlayerStatsData(id);
@@ -230,6 +232,7 @@ export default {
       if (player !== undefined) {
         this.playerStats = player.overallStats || {};
         this.playerCorrections = player.corrections || 0;
+        this.lastCorrection = player.lastCorrection || '';
       }
     },
     showStatsDescription() {

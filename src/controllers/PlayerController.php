@@ -2,6 +2,7 @@
 
 namespace controllers;
 
+use Carbon\Carbon;
 use core\Controller;
 use repositories\PlayerRepository;
 use services\PlayerService;
@@ -46,6 +47,7 @@ class PlayerController extends Controller
                 $player->overallStats = $overall['overallStats'];
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
                 $player->corrections = $this->statService->getWeekCorrections($player->id);
+                $player->lastCorrection = $this->statService->getLastCorrection($player->id);
                 $this->playerService->setStats($player);
             }
 

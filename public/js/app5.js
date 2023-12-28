@@ -17391,6 +17391,7 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
       player: null,
       playerStats: null,
       playerCorrections: null,
+      lastCorrection: null,
       table: null,
       playerStatsModal: '',
       statsDescriptionModal: '',
@@ -17494,6 +17495,7 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
     showPlayerStatsModal: function showPlayerStatsModal(e) {
       this.playerStats = null;
       this.playerCorrections = null;
+      this.lastCorrection = null;
       var id = e.target.dataset.id;
       this.preparePlayerStatsData(id);
       var modalEl = this.$refs.playerStatsModal;
@@ -17509,6 +17511,7 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
       if (player !== undefined) {
         this.playerStats = player.overallStats || {};
         this.playerCorrections = player.corrections || 0;
+        this.lastCorrection = player.lastCorrection || '';
       }
     },
     showStatsDescription: function showStatsDescription() {
@@ -18170,17 +18173,15 @@ var _hoisted_17 = {
 var _hoisted_18 = {
   "class": "mb-0"
 };
-var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Кількість корегувань з останньої гри: ", -1 /* HOISTED */);
-});
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "text-primary"
 };
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "text-danger"
-  }, "*статистика корегувань в тестовому режимі", -1 /* HOISTED */);
-});
+var _hoisted_20 = {
+  "class": "mb-0"
+};
+var _hoisted_21 = {
+  "class": "text-primary"
+};
 var _hoisted_22 = {
   "class": "table table-bordered text-center"
 };
@@ -18259,7 +18260,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "is-mobile": $data.isMobile,
     onFormClose: $options.closePlayerForm,
     onPlayerUpdated: $options.index
-  }, null, 8 /* PROPS */, ["player", "is-mobile", "onFormClose", "onPlayerUpdated"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.playerCorrections), 1 /* TEXT */)]), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.playerStats, function (value, stat) {
+  }, null, 8 /* PROPS */, ["player", "is-mobile", "onFormClose", "onPlayerUpdated"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Кількість корегувань з останньої гри: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.playerCorrections), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Останнє оновлення: "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.lastCorrection), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("thead", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.playerStats, function (value, stat) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("th", {
       "class": "align-middle",
       key: stat

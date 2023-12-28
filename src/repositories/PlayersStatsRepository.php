@@ -2,6 +2,7 @@
 
 namespace repositories;
 
+use Carbon\Carbon;
 use core\Repository;
 use DateTime;
 use PDO;
@@ -77,23 +78,43 @@ class PlayersStatsRepository extends Repository
 
     /**
      * @param int $playerId
-     * @return int
+     * @return string
      */
-    public function getWeekCorrections(int $playerId): int
+    public function getWeekCorrections(int $playerId): string
     {
-        $query = $this->db->prepare(
-            "SELECT COUNT(player_id) as corrections
-        FROM players_stats
-        WHERE player_id = :player_id
-          AND updated_at >= 
-            CASE 
-              WHEN DAYOFWEEK(NOW()) = 7 THEN
-                CONCAT(CURDATE(), ' 09:00:00')
-              ELSE
-                CONVERT_TZ(CURDATE() - INTERVAL (DAYOFWEEK(NOW()) + 5) % 7 DAY + INTERVAL 9 HOUR, 'UTC', 'Europe/Berlin')
-            END
+        $now = Carbon::now();
+
+        $query = $this->db->prepare("
+                SELECT COUNT(player_id) as corrections
+                FROM players_stats
+                WHERE player_id = :player_id
+                AND updated_at >= :start_of_week
         ");
+
+        $startOfWeek = $now->copy()->startOfWeek(Carbon::SATURDAY)->setTime(9, 0, 0);
+        $startOfWeekDate = $startOfWeek->toDateTimeString();
+
+        // Bind parameters
         $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
+        $query->bindParam(':start_of_week', $startOfWeekDate);
+
+        // Execute the query
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
+
+    public function getLastCorrection($playerId): string
+    {
+        $query = $this->db->prepare("
+                SELECT MAX(updated_at) as last_update
+                FROM players_stats
+                WHERE player_id = :player_id
+        ");
+
+        $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
+
+        // Execute the query
         $query->execute();
 
         return $query->fetchColumn();

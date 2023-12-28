@@ -2,6 +2,7 @@
 
 namespace services;
 
+use Carbon\Carbon;
 use repositories\PlayerRepository;
 use repositories\PlayersStatsRepository;
 
@@ -185,9 +186,25 @@ class StatService
         return $this->playerStatsRepo->updateOrCreate($data);
     }
 
-    public function getWeekCorrections($playerId): int
+    /**
+     * Returns ['corrections', 'last_update']
+     * @param $playerId
+     * @return string
+     */
+    public function getWeekCorrections($playerId): string
     {
         return $this->playerStatsRepo->getWeekCorrections($playerId);
+    }
+
+    public function getLastCorrection($playerId): string
+    {
+        $date = $this->playerStatsRepo->getLastCorrection($playerId);
+
+        if (!empty($date)) {
+            return Carbon::parse($date)->format('d-m-Y H:i:s');
+        } else {
+            return 'not set';
+        }
     }
 
     /**
