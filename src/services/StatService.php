@@ -225,5 +225,24 @@ class StatService
         // Проверяем, превышает ли разница порог
         return $difference < $threshold;
     }
+
+    /**
+     * @param $player
+     * @return int
+     */
+    public function getUpdateStatus($player): int
+    {
+        $targetDate = Carbon::createFromFormat('d-m-Y H:i:s', $player->lastCorrection);
+        $currentDate = Carbon::now();
+        $timeDifference = $currentDate->diffInDays($targetDate);
+
+        if ($timeDifference  <= 1) {
+            return 1;
+        } elseif ($timeDifference > 30) {
+            return 2;
+        }
+
+        return 0;
+    }
 }
 
