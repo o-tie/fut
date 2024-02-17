@@ -30,7 +30,7 @@ class PlayerController extends Controller
         $this->render('players.index');
     }
 
-    public function getPlayers($params)
+    public function getPlayers($params): void
     {
         try {
             if (isset($params['id'])) {
@@ -48,6 +48,8 @@ class PlayerController extends Controller
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
                 $player->corrections = $this->statService->getWeekCorrections($player->id);
                 $player->lastCorrection = $this->statService->getLastCorrection($player->id);
+                $player->updateStatus = $this->statService->getUpdateStatus($player);
+
                 $this->playerService->setStats($player);
             }
 

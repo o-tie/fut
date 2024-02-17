@@ -17405,8 +17405,17 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
       tableData: null,
       filters: {},
       columns: [{
-        data: 'name',
-        "class": 'w-70'
+        data: null,
+        "class": 'w-70',
+        render: function render(data) {
+          var updateClass = '';
+          if (data.updateStatus === 1) {
+            updateClass = 'text-success';
+          } else if (data.updateStatus === 2) {
+            updateClass = 'text-danger';
+          }
+          return "<div class=\"".concat(updateClass, "\">").concat(data.name, "</div>");
+        }
       }, {
         data: 'votes',
         "class": 'w-10 text-center'

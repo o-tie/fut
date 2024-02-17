@@ -140,7 +140,15 @@ export default {
       tableData : null,
       filters: {},
       columns: [
-        {data: 'name' , class:'w-70'},
+        {data: null , class:'w-70', render: (data) => {
+            var updateClass = '';
+            if (data.updateStatus === 1) {
+              updateClass = 'text-success';
+            } else if (data.updateStatus === 2) {
+              updateClass = 'text-danger';
+            }
+            return `<div class="${updateClass}">${data.name}</div>`;
+          }},
         {data: 'votes' , class:'w-10 text-center'},
         {data: 'overall' , class:'w-10 text-center'},
         {data: 'overallUser' , class:'w-10 text-center'},
