@@ -227,12 +227,12 @@ class StatService
     }
 
     /**
-     * @param $player
+     * @param $playerId
      * @return int
      */
-    public function getUpdateStatus($player): int
+    public function getUpdateStatus($playerId): int
     {
-        $date = $this->playerStatsRepo->getPlayerUpdateByUser($player->id, $_SESSION['user']);
+        $date = $this->playerStatsRepo->getPlayerUpdateByUser($playerId, $_SESSION['user']);
         $date = Carbon::parse($date)->format('d-m-Y H:i:s');
 
         $targetDate = Carbon::createFromFormat('d-m-Y H:i:s', $date);

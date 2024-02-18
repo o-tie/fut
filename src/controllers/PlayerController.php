@@ -48,7 +48,7 @@ class PlayerController extends Controller
                 $player->overallUser = $this->statService->getOverallUser($player->stats);
                 $player->corrections = $this->statService->getWeekCorrections($player->id);
                 $player->lastCorrection = $this->statService->getLastCorrection($player->id);
-                $player->updateStatus = $this->statService->getUpdateStatus($player);
+                $player->updateStatus = $this->statService->getUpdateStatus($player->id);
 
                 $this->playerService->setStats($player);
             }
