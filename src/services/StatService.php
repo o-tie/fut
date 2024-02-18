@@ -233,6 +233,11 @@ class StatService
     public function getUpdateStatus($playerId): int
     {
         $date = $this->playerStatsRepo->getPlayerUpdateByUser($playerId, $_SESSION['user']);
+
+        if (empty($date)) {
+            return 0;
+        }
+
         $date = Carbon::parse($date)->format('d-m-Y H:i:s');
 
         $targetDate = Carbon::createFromFormat('d-m-Y H:i:s', $date);
