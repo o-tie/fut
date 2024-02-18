@@ -232,7 +232,11 @@ class StatService
      */
     public function getUpdateStatus($player): int
     {
-        $targetDate = Carbon::createFromFormat('d-m-Y H:i:s', $player->lastCorrection);
+        $date = $this->playerStatsRepo->getPlayerUpdateByUser($player->id, $_SESSION['user']);
+        $date = Carbon::parse($date)->format('d-m-Y H:i:s');
+
+        $targetDate = Carbon::createFromFormat('d-m-Y H:i:s', $date);
+
         $currentDate = Carbon::now();
         $timeDifference = $currentDate->diffInDays($targetDate);
 

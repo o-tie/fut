@@ -119,4 +119,27 @@ class PlayersStatsRepository extends Repository
 
         return $query->fetchColumn();
     }
+
+    /**
+     * @param $playerId
+     * @param $userId
+     * @return string
+     */
+    public function getPlayerUpdateByUser($playerId, $userId): string
+    {
+        $query = $this->db->prepare("
+                SELECT updated_at
+                FROM players_stats
+                WHERE player_id = :player_id
+                AND user_id = :user_id
+        ");
+
+        $query->bindParam(':player_id', $playerId, PDO::PARAM_INT);
+        $query->bindParam(':user_id', $userId, PDO::PARAM_INT);
+
+        // Execute the query
+        $query->execute();
+
+        return $query->fetchColumn();
+    }
 }
