@@ -235,7 +235,7 @@ class StatService
         $date = $this->playerStatsRepo->getPlayerUpdateByUser($playerId, $_SESSION['user']);
 
         if (empty($date)) {
-            return 0;
+            return 2;
         }
 
         $date = Carbon::parse($date)->format('d-m-Y H:i:s');
