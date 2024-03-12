@@ -99,6 +99,16 @@
     max-height: 40px;
     color: $bs-light;
   }
+  .navbar-space-separator {
+    width: 100px;
+  }
+  .navbar-panel {
+    display: flex;
+    align-items: center;
+    .navbar-item {
+      margin: 0 5px;
+    }
+  }
   .exit-link {
     text-decoration: none;
     color: $bs-light;

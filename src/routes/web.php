@@ -3,6 +3,7 @@
 namespace routes;
 
 use controllers\AuthController;
+use controllers\CalendarController;
 use controllers\IndexController;
 use controllers\init\InitController;
 use controllers\PlayerController;
@@ -16,6 +17,7 @@ return [
         '/login' => [AuthController::class, 'index'],
         '/players' => [PlayerController::class, 'index'],
         '/squads' => [SquadController::class, 'index'],
+        '/calendar' => [CalendarController::class, 'index'],
 
         '/api/players' => [PlayerController::class, 'getPlayers'],
     ],
