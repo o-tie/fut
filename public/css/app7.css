@@ -88,6 +88,16 @@
   max-height: 40px;
   color: #f8f9fa;
 }
+.nav-items-wrapper .navbar-space-separator {
+  width: 100px;
+}
+.nav-items-wrapper .navbar-panel {
+  display: flex;
+  align-items: center;
+}
+.nav-items-wrapper .navbar-panel .navbar-item {
+  margin: 0 5px;
+}
 .nav-items-wrapper .exit-link {
   text-decoration: none;
   color: #f8f9fa;
