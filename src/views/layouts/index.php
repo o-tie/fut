@@ -9,8 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Meridian stats</title>
-    <link href="../../../public/css/app7.css" rel="stylesheet" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="../../../public/css/app.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous"
+    >
 </head>
 <body>
 
@@ -43,7 +46,7 @@
 <?php endif; ?>
 
 <div id="app" class="main">
-    <div class="content-wrapper h-100 container">
+    <div id="appContainer" class="content-wrapper h-100 container">
         <?= $content ?>
     </div>
 </div>
@@ -52,7 +55,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-<script src="../../../public/js/app7.js" defer></script>
+<script src="../../../public/js/app.js" defer></script>
 
 </body>
 </html>
