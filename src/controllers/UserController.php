@@ -3,13 +3,11 @@
 namespace controllers;
 
 use core\Controller;
-use Exception;
 use repositories\UserRepository;
-use Throwable;
 
 class UserController extends Controller
 {
-    protected $userRepo;
+    protected UserRepository $userRepo;
 
     public function __construct()
     {

@@ -171,31 +171,30 @@ export default {
     },
     createSquads() {
       this.squads = {};
-      this.selectedPlayers = {}; // новый объект для хранения выбранных игроков
+      this.selectedPlayers = {}; // new object for store selected players
       for (let i = 1; i <= this.selectedTeamCount; i++) {
         this.squads[i] = [];
         this.squads[i].total = {};
-        this.selectedPlayers[i] = null; // начальное значение выбранного игрока для каждой команды
+        this.selectedPlayers[i] = null; // started player value for each team
       }
     },
     addPlayer(teamIndex) {
       const selectedPlayer = this.selectedPlayers[teamIndex];
       if (selectedPlayer) {
-        // Удалить выбранного игрока из массива players
+        // Remove selected player from players array
         const playerIndex = this.players.findIndex(player => player.id === selectedPlayer.id);
         if (playerIndex !== -1) {
           this.players.splice(playerIndex, 1);
         }
-        // Добавить игрока в команду
+        // Add player to the team
         this.squads[teamIndex].push(selectedPlayer);
-        // Рассчитать среднее арифметическое для команды после добавления игрока
-        // Обновить среднее в squads
+        // Update average rate in squads
         this.squads[teamIndex].total = this.calculateTeamTotal(this.squads[teamIndex]);
       }
-      this.selectedPlayers[teamIndex] = null; // сбрасываем значение для выбранного игрока
+      this.selectedPlayers[teamIndex] = null; // reset value for selected player
     },
     dropPlayer(e) {
-      const playerId = parseInt(e.target.dataset.id); // Преобразование в числовой формат
+      const playerId = parseInt(e.target.dataset.id); // convert to number format
       const teamIndex = Object.keys(this.squads).find(index => {
         return this.squads[index].some(player => player.id === playerId);
       });
@@ -221,7 +220,7 @@ export default {
       const numPlayers = squad.length;
 
       if (numPlayers === 0) {
-        return { sumOverall: 0, avgOverall: 0, avgOverallStats: {} }; // или другое значение по умолчанию, если в команде нет игроков
+        return { sumOverall: 0, avgOverall: 0, avgOverallStats: {} };
       }
       // Calc sum and avg overall
       total.sumOverall = squad.reduce((sum, player) => sum + player.overall, 0);

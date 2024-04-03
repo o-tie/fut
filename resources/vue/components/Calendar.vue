@@ -22,8 +22,6 @@ export default {
   created() {
     this.deviceWidth = CommonMixin.methods.getDeviceWidth();
     this.bodyWidth = CommonMixin.methods.getContentWidth();
-
-    console.log(this.deviceWidth);
   }
 }
 

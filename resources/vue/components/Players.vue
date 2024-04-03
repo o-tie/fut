@@ -167,7 +167,6 @@ export default {
       if (this.isMobile) {
         const isConfirmed = window.confirm("Мобільної версії сторінки немає, точно хочеш перейти?");
         if (isConfirmed) {
-          // Перейдите по ссылке /squads
           window.location.replace('/squads');
         }
       }

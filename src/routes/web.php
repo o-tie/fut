@@ -2,12 +2,8 @@
 
 namespace routes;
 
-use controllers\AuthController;
-use controllers\CalendarController;
-use controllers\IndexController;
+use controllers\{AuthController, CalendarController, IndexController, PlayerController, SquadController};
 use controllers\init\InitController;
-use controllers\PlayerController;
-use controllers\SquadController;
 
 return [
     'GET' => [

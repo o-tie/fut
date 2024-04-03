@@ -7,7 +7,7 @@ class Controller extends BaseController
     public function __construct()
     {
         if (!isset($_SESSION['user'])) {
-            // Перенаправление на страницу логина
+            // Redirect to login page
             header('Location: /login');
             exit();
         }
