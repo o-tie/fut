@@ -40,7 +40,7 @@ use core\AssetHelper;
                 </div>
                 <div class="right-side w-50 d-flex justify-content-end">
                     <div class="exit-link-wrapper">
-                        <a class="navbar-item exit-link" href="/logout">Вийти</a>
+                        <a class="navbar-item exit-link" href="/logout">Logout</a>
                     </div>
                 </div>
             </div>

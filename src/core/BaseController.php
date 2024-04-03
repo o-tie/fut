@@ -18,23 +18,24 @@ class BaseController
     }
 
     /**
+     * View rendering
      * @param $viewFile
      * @param $data
      * @return false|string
      */
     private function renderView($viewFile, $data): false|string
     {
-        // Функция для рендеринга вида с данными
         ob_start();
         extract($data);
         include($viewFile);
+
         return ob_get_clean();
     }
 
     /**
      * @param $data
      */
-    protected function jsonResponse($data)
+    protected function jsonResponse($data): void
     {
         header('Content-Type: application/json');
         header("Access-Control-Allow-Origin: *");

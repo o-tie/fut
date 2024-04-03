@@ -14,6 +14,10 @@ class Router
     protected const METHOD_POST = 'POST';
     protected const METHOD_DELETE = 'DELETE';
 
+    /**
+     * @param $uri
+     * @param $method
+     */
     public function __construct($uri, $method)
     {
         $this->method = $method;

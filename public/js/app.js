@@ -16937,7 +16937,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.deviceWidth = _js_mixins_common_mixin__WEBPACK_IMPORTED_MODULE_0__["default"].methods.getDeviceWidth();
     this.bodyWidth = _js_mixins_common_mixin__WEBPACK_IMPORTED_MODULE_0__["default"].methods.getContentWidth();
-    console.log(this.deviceWidth);
   }
 });
 
@@ -17179,34 +17178,33 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
     },
     createSquads: function createSquads() {
       this.squads = {};
-      this.selectedPlayers = {}; // новый объект для хранения выбранных игроков
+      this.selectedPlayers = {}; // new object for store selected players
       for (var i = 1; i <= this.selectedTeamCount; i++) {
         this.squads[i] = [];
         this.squads[i].total = {};
-        this.selectedPlayers[i] = null; // начальное значение выбранного игрока для каждой команды
+        this.selectedPlayers[i] = null; // started player value for each team
       }
     },
     addPlayer: function addPlayer(teamIndex) {
       var selectedPlayer = this.selectedPlayers[teamIndex];
       if (selectedPlayer) {
-        // Удалить выбранного игрока из массива players
+        // Remove selected player from players array
         var playerIndex = this.players.findIndex(function (player) {
           return player.id === selectedPlayer.id;
         });
         if (playerIndex !== -1) {
           this.players.splice(playerIndex, 1);
         }
-        // Добавить игрока в команду
+        // Add player to the team
         this.squads[teamIndex].push(selectedPlayer);
-        // Рассчитать среднее арифметическое для команды после добавления игрока
-        // Обновить среднее в squads
+        // Update average rate in squads
         this.squads[teamIndex].total = this.calculateTeamTotal(this.squads[teamIndex]);
       }
-      this.selectedPlayers[teamIndex] = null; // сбрасываем значение для выбранного игрока
+      this.selectedPlayers[teamIndex] = null; // reset value for selected player
     },
     dropPlayer: function dropPlayer(e) {
       var _this2 = this;
-      var playerId = parseInt(e.target.dataset.id); // Преобразование в числовой формат
+      var playerId = parseInt(e.target.dataset.id); // convert to number format
       var teamIndex = Object.keys(this.squads).find(function (index) {
         return _this2.squads[index].some(function (player) {
           return player.id === playerId;
@@ -17240,7 +17238,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           sumOverall: 0,
           avgOverall: 0,
           avgOverallStats: {}
-        }; // или другое значение по умолчанию, если в команде нет игроков
+        };
       }
       // Calc sum and avg overall
       total.sumOverall = squad.reduce(function (sum, player) {
@@ -17473,7 +17471,6 @@ datatables_net_vue3__WEBPACK_IMPORTED_MODULE_2__["default"].use(datatables_net_b
       if (this.isMobile) {
         var isConfirmed = window.confirm("Мобільної версії сторінки немає, точно хочеш перейти?");
         if (isConfirmed) {
-          // Перейдите по ссылке /squads
           window.location.replace('/squads');
         }
       }

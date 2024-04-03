@@ -5,6 +5,7 @@ namespace core;
 class AssetHelper
 {
     /**
+     * Return file version based on creation date like app.js?v=20240318101854
      * @param $filePath
      * @return string
      */

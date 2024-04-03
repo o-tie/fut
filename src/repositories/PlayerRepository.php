@@ -4,7 +4,6 @@ namespace repositories;
 
 use core\Repository;
 use PDO;
-
 class PlayerRepository extends Repository
 {
     protected string $tableName = 'players';

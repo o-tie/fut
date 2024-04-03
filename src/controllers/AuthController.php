@@ -3,9 +3,8 @@
 namespace controllers;
 
 use core\BaseController;
-use core\Controller;
-use repositories\UserRepository;
 use Exception;
+use repositories\UserRepository;
 use Throwable;
 
 class AuthController extends BaseController
@@ -26,8 +25,10 @@ class AuthController extends BaseController
     }
 
     /**
+     * @param $request
+     * @return void
      */
-    public function login($request)
+    public function login($request): void
     {
         try {
             $message = null;
@@ -55,17 +56,16 @@ class AuthController extends BaseController
                 }
             }
         } catch (Throwable $e) {
-            return $this->jsonResponse(['success' => false, 'message' => $e->getMessage()]);
+            $this->jsonResponse(['success' => false, 'message' => $e->getMessage()]);
         }
 
-        return $this->jsonResponse(['success' => $success, 'message' => $message, 'isNewUser' => $isNewUser]);
+        $this->jsonResponse(['success' => $success, 'message' => $message, 'isNewUser' => $isNewUser]);
     }
 
-    public function create($request)
+    public function create($request): void
     {
         try {
             $message = null;
-            $success = false;
 
             $params = $request['params'] ?? null;
 
@@ -75,20 +75,22 @@ class AuthController extends BaseController
             $params['password'] = md5($params['password']);
             if ($this->userRepo->create($params)) {
                 $user = $this->userRepo->getOne($params['username']);
-                $success = true;
                 $_SESSION['user'] = $user['id'];
                 $message = 'Акаунт успішно створений.';
             } else {
                 $message = 'Щось пішло не так, акаунт не створений.';
             }
         } catch (Throwable $e) {
-            return $this->jsonResponse(['success' => false, 'message' => $e->getMessage()]);
+            $this->jsonResponse(['success' => false, 'message' => $e->getMessage()]);
         }
 
-        return $this->jsonResponse(['success' => $success, 'message' => $message]);
+        $this->jsonResponse(['success' => true, 'message' => $message]);
     }
 
-    public function logout()
+    /**
+     * @return void
+     */
+    public function logout(): void
     {
         unset($_SESSION['user']);
         header("Location: /");

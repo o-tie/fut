@@ -196,6 +196,11 @@ class StatService
         return $this->playerStatsRepo->getWeekCorrections($playerId);
     }
 
+    /**
+     * Get last correction date
+     * @param $playerId
+     * @return string
+     */
     public function getLastCorrection($playerId): string
     {
         $date = $this->playerStatsRepo->getLastCorrection($playerId);
@@ -208,6 +213,7 @@ class StatService
     }
 
     /**
+     * Get count of votes for specific player
      * @param int $playerId
      * @return int
      */
@@ -216,17 +222,24 @@ class StatService
         return $this->playerStatsRepo->getPlayerVotes($playerId) ?? 0;
     }
 
+    /**
+     * @param $num1
+     * @param $num2
+     * @return bool
+     */
     protected function isTolerance($num1, $num2): bool
     {
-        // Вычисляем разницу между числами
+        // Get difference between numbers
         $difference = abs($num1 - $num2);
-        // Вычисляем порог для сравнения (25% от меньшего числа)
+        // Calculate the threshold for comparison (25% of the smaller number)
         $threshold = min($num1, $num2) * self::TOLERANCE;
-        // Проверяем, превышает ли разница порог
+        // Checking if the difference exceeds the threshold
         return $difference < $threshold;
     }
 
     /**
+     * Get update status for specific player
+     * based on last update value
      * @param $playerId
      * @return int
      */

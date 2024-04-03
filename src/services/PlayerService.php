@@ -4,12 +4,17 @@ namespace services;
 
 class PlayerService
 {
-    public function setStats(&$player)
+    /**
+     * @param $player
+     * @return mixed
+     */
+    public function setStats(&$player): object
     {
         $stats = $player->overallStats;
         foreach ($stats as $stat => $value) {
             $player->$stat = $value;
         }
+
         return $player;
     }
 }

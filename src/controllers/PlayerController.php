@@ -2,7 +2,6 @@
 
 namespace controllers;
 
-use Carbon\Carbon;
 use core\Controller;
 use repositories\PlayerRepository;
 use services\PlayerService;
@@ -30,6 +29,10 @@ class PlayerController extends Controller
         $this->render('players.index');
     }
 
+    /**
+     * @param $params
+     * @return void
+     */
     public function getPlayers($params): void
     {
         try {
@@ -59,7 +62,11 @@ class PlayerController extends Controller
         }
     }
 
-    public function update($params)
+    /**
+     * @param $params
+     * @return void
+     */
+    public function update($params): void
     {
         $errors = $this->statService->validateStats($params['stats']);
 
@@ -68,7 +75,6 @@ class PlayerController extends Controller
         }
 
         $result = $this->statService->updatePlayerStats($params);
-
 
         $this->jsonResponse(['success' => $result]);
     }

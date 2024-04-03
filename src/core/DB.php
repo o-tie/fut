@@ -8,9 +8,8 @@ use Throwable;
 
 class DB
 {
-    private static $instance;
-    private static $pdo;
-
+    private static ?self $instance = null;
+    private static ?PDO $pdo = null;
     private function __construct()
     {
         $dotenv = Dotenv::createImmutable(__DIR__ . '/../..');
