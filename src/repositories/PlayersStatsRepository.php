@@ -104,7 +104,7 @@ class PlayersStatsRepository extends Repository
         return $query->fetchColumn();
     }
 
-    public function getLastCorrection($playerId): string
+    public function getLastCorrection($playerId): ?string
     {
         $query = $this->db->prepare("
                 SELECT MAX(updated_at) as last_update
